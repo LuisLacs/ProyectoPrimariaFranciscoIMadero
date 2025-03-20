@@ -25,7 +25,6 @@ namespace ProyectoEscuela
         private void DirectorIndex_Load(object sender, EventArgs e)
         {
             pInicio.Visible = true;
-            panel2.Controls.Clear();
         }
 
         private void guna2Button3_Click(object sender, EventArgs e)
@@ -66,6 +65,7 @@ namespace ProyectoEscuela
         }
         public void abrirEvaluaciones()
         {
+            pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorEvaluaciones newForm = new DirectorEvaluaciones();
             newForm.TopLevel = false; // This is important to embed the form
@@ -76,7 +76,7 @@ namespace ProyectoEscuela
         }
         public void abrirGrupos()
         {
-
+            pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorGrupos newForm = new DirectorGrupos();
             newForm.TopLevel = false; // This is important to embed the form
@@ -87,6 +87,7 @@ namespace ProyectoEscuela
         }
         public void abrirMaestros()
         {
+            pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorMaestros newForm = new DirectorMaestros();
             newForm.TopLevel = false; // This is important to embed the form
