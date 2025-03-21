@@ -25,6 +25,7 @@ namespace ProyectoEscuela
         public DirectorMaestros()
         {
             InitializeComponent();
+            //
         }
 
         private void DirectorMaestros_Load(object sender, EventArgs e)

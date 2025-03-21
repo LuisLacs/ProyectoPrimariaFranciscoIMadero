@@ -265,6 +265,7 @@ namespace ReglasDeNegocio
                         reader.Close();
                     }
                 }
+                //
                 conMySQL.Close();
             }
             catch (Exception ex)

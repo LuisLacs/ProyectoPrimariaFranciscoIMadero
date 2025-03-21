@@ -28,6 +28,7 @@ namespace ReglasDeNegocio
                 conMySQL.Open(); // Abrir y cerrar la conexión
                 conMySQL.Close();
                 bOk = true;
+                //
             }
             catch (Exception ex)
             {

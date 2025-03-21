@@ -24,6 +24,7 @@ namespace ProyectoEscuela
         {
             pInicio.Visible = true;
             lblNombre.Text = direClass.GetName();
+            // solo para hacer el commit
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
