@@ -27,16 +27,23 @@ namespace ProyectoEscuela
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+            if (direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
             {
                 MessageBox.Show("Información de maestro modificada exitosamente");
                 this.Close();
-                DirectorMaestros maestros = new DirectorMaestros();
-                maestros.RefreshOptions();
-                maestros.LoadOptions();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Ocurrió un error: " + direClass.sError);
+            }
+        }
+
+        private void tbGrade_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back && e.KeyChar != 13 && e.KeyChar != 11)
+            {
+                // Si no es un número ni la tecla de retroceso, cancela el evento de pulsación de tecla
+                e.Handled = true;
             }
         }
     }

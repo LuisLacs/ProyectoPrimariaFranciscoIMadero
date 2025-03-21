@@ -88,6 +88,7 @@
             tbGrade.ShadowDecoration.CustomizableEdges = customizableEdges4;
             tbGrade.Size = new Size(273, 36);
             tbGrade.TabIndex = 51;
+            tbGrade.KeyPress += tbGrade_KeyPress;
             // 
             // tbLastName
             // 

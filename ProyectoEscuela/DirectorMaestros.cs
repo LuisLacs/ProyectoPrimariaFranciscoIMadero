@@ -1,5 +1,6 @@
 ﻿using DevExpress.CodeParser;
 using DevExpress.XtraEditors;
+using DevExpress.XtraPrinting.Native;
 using DevExpress.XtraTreeList.Painter;
 using Google.Protobuf.WellKnownTypes;
 using Guna.UI2.WinForms;
@@ -31,7 +32,7 @@ namespace ProyectoEscuela
             LoadOptions();
         }
 
-        public void LoadOptions()
+        private void LoadOptions()
         {
             DataTable dt = new DataTable();
             pnlAddMaestro.Visible = true;
@@ -43,10 +44,12 @@ namespace ProyectoEscuela
                 switch (i)
                 {
                     case 0:
+                        pnlMaestro1.Visible = true;
                         lblId1.Text = row[0].ToString();
                         lblName1.Text = row[1].ToString() + " " + row[2].ToString();
                         string group = CheckGroup(row[3].ToString());
                         lblGroup1.Text = group;
+                        pnlAddMaestro.Location = new Point(14, 305);
                         i++;
                         break;
                     case 1:
@@ -98,33 +101,6 @@ namespace ProyectoEscuela
             }
         }
 
-        public void RefreshOptions()
-        {
-            pnlMaestro2.Visible = false;
-            pnlMaestro3.Visible = false;
-            pnlMaestro4.Visible = false;
-            pnlMaestro5.Visible = false;
-            pnlMaestro6.Visible = false;
-            lblId1.Text = "id";
-            lblId2.Text = "id";
-            lblId3.Text = "id";
-            lblId4.Text = "id";
-            lblId5.Text = "id";
-            lblId6.Text = "id";
-            lblName1.Text = "nombre";
-            lblName2.Text = "nombre";
-            lblName3.Text = "nombre";
-            lblName4.Text = "nombre";
-            lblName5.Text = "nombre";
-            lblName6.Text = "nombre";
-            lblGroup1.Text = "grupo";
-            lblGroup2.Text = "grupo";
-            lblGroup3.Text = "grupo";
-            lblGroup4.Text = "grupo";
-            lblGroup5.Text = "grupo";
-            lblGroup6.Text = "grupo";
-        }
-
         private string CheckGroup(string num)
         {
             switch (num)
@@ -171,7 +147,11 @@ namespace ProyectoEscuela
                 grade = row[3].ToString();
             }
             ModificarMaestro modify = new ModificarMaestro(id, name, lname, grade);
-            modify.ShowDialog();
+            var check = modify.ShowDialog();
+            if (check == DialogResult.OK || check == DialogResult.Cancel)
+            {
+                LoadOptions();
+            }
         }
 
         private void btnModify2_Click(object sender, EventArgs e)
@@ -289,7 +269,11 @@ namespace ProyectoEscuela
         {
             int id = direClass.LastID() + 1;
             AgregarMaestro agregar = new AgregarMaestro(id);
-            agregar.Show();
+            var check = agregar.ShowDialog();
+            if (check == DialogResult.OK || check == DialogResult.Cancel)
+            {
+                LoadOptions();
+            }
         }
 
         private void pnlAddMaestro_Click(object sender, EventArgs e)
