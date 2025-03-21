@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ReglasDeNegocio;
 
 namespace ProyectoEscuela
 {
     public partial class DirectorIndex : Form
     {
+        MySQLDirector direClass = new MySQLDirector();
+
         public DirectorIndex()
         {
             InitializeComponent();
@@ -25,6 +28,7 @@ namespace ProyectoEscuela
         private void DirectorIndex_Load(object sender, EventArgs e)
         {
             pInicio.Visible = true;
+            lblNombre.Text = direClass.GetName();
         }
 
         private void guna2Button3_Click(object sender, EventArgs e)
