@@ -22,15 +22,30 @@ namespace ProyectoEscuela
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MySQLDirector direClass = new MySQLDirector();
-            if (direClass.AddTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+            if (tbName.Text != string.Empty && tbLastName.Text != string.Empty && tbGrade.Text != string.Empty)
             {
-                MessageBox.Show("Información de maestro almacenada exitosamente");
-                this.Close();
+                int grade = Convert.ToInt16(tbGrade.Text);
+                if (grade > 6)
+                {
+                    MessageBox.Show("Solamente se permiten grados entre 1-6", "Error", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MySQLDirector direClass = new MySQLDirector();
+                    if (direClass.AddTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+                    {
+                        MessageBox.Show("Información de maestro almacenada exitosamente");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error: " + direClass.sError);
+                    }
+                }
             }
             else
             {
-                MessageBox.Show("Ocurrió un error: " + direClass.sError);
+                MessageBox.Show("Favor de llenar todos los campos", "Error", MessageBoxButtons.OK);
             }
         }
 

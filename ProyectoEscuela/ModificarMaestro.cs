@@ -27,14 +27,28 @@ namespace ProyectoEscuela
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+            if (tbName.Text != string.Empty && tbLastName.Text != string.Empty && tbGrade.Text != string.Empty)
             {
-                MessageBox.Show("Información de maestro modificada exitosamente");
-                this.Close();
-            }
-            else
+                int grade = Convert.ToInt16(tbGrade.Text);
+                if (grade <= 6)
+                {
+                    if (direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+                    {
+                        MessageBox.Show("Información de maestro modificada exitosamente");
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrió un error: " + direClass.sError);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Solamente se permiten grados entre 1-6", "Error", MessageBoxButtons.OK);
+                }
+            }else
             {
-                MessageBox.Show("Ocurrió un error: " + direClass.sError);
+                MessageBox.Show("Favor de llenar todos los campos", "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -44,7 +58,6 @@ namespace ProyectoEscuela
             {
                 // Si no es un número ni la tecla de retroceso, cancela el evento de pulsación de tecla
                 e.Handled = true;
-                //
             }
         }
     }

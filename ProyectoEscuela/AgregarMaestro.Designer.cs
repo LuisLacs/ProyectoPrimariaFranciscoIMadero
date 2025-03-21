@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             btnSave = new Guna.UI2.WinForms.Guna2Button();
             tbGrade = new Guna.UI2.WinForms.Guna2TextBox();
             tbLastName = new Guna.UI2.WinForms.Guna2TextBox();
@@ -43,12 +43,13 @@
             label2 = new Label();
             label1 = new Label();
             lblName1 = new Label();
+            label3 = new Label();
             SuspendLayout();
             // 
             // btnSave
             // 
             btnSave.BorderRadius = 9;
-            btnSave.CustomizableEdges = customizableEdges1;
+            btnSave.CustomizableEdges = customizableEdges9;
             btnSave.DisabledState.BorderColor = Color.DarkGray;
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -56,9 +57,9 @@
             btnSave.FillColor = Color.RoyalBlue;
             btnSave.Font = new Font("Century Gothic", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.ForeColor = Color.White;
-            btnSave.Location = new Point(183, 273);
+            btnSave.Location = new Point(188, 457);
             btnSave.Name = "btnSave";
-            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSave.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnSave.Size = new Size(142, 46);
             btnSave.TabIndex = 52;
             btnSave.Text = "GUARDAR";
@@ -69,7 +70,7 @@
             tbGrade.BorderColor = Color.RoyalBlue;
             tbGrade.BorderRadius = 10;
             tbGrade.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-            tbGrade.CustomizableEdges = customizableEdges3;
+            tbGrade.CustomizableEdges = customizableEdges11;
             tbGrade.DefaultText = "";
             tbGrade.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             tbGrade.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -79,14 +80,14 @@
             tbGrade.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             tbGrade.Font = new Font("Segoe UI", 9F);
             tbGrade.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbGrade.Location = new Point(172, 200);
+            tbGrade.Location = new Point(124, 382);
             tbGrade.Margin = new Padding(4, 5, 4, 5);
             tbGrade.Name = "tbGrade";
             tbGrade.PasswordChar = '\0';
             tbGrade.PlaceholderText = "";
             tbGrade.SelectedText = "";
-            tbGrade.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            tbGrade.Size = new Size(273, 36);
+            tbGrade.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            tbGrade.Size = new Size(273, 53);
             tbGrade.TabIndex = 51;
             tbGrade.KeyPress += tbGrade_KeyPress;
             // 
@@ -95,7 +96,7 @@
             tbLastName.BorderColor = Color.RoyalBlue;
             tbLastName.BorderRadius = 10;
             tbLastName.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-            tbLastName.CustomizableEdges = customizableEdges5;
+            tbLastName.CustomizableEdges = customizableEdges13;
             tbLastName.DefaultText = "";
             tbLastName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             tbLastName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -105,14 +106,14 @@
             tbLastName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             tbLastName.Font = new Font("Segoe UI", 9F);
             tbLastName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbLastName.Location = new Point(172, 127);
+            tbLastName.Location = new Point(124, 262);
             tbLastName.Margin = new Padding(4, 5, 4, 5);
             tbLastName.Name = "tbLastName";
             tbLastName.PasswordChar = '\0';
             tbLastName.PlaceholderText = "";
             tbLastName.SelectedText = "";
-            tbLastName.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            tbLastName.Size = new Size(273, 36);
+            tbLastName.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            tbLastName.Size = new Size(273, 53);
             tbLastName.TabIndex = 50;
             // 
             // tbName
@@ -120,7 +121,7 @@
             tbName.BorderColor = Color.RoyalBlue;
             tbName.BorderRadius = 10;
             tbName.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-            tbName.CustomizableEdges = customizableEdges7;
+            tbName.CustomizableEdges = customizableEdges15;
             tbName.DefaultText = "";
             tbName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
             tbName.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
@@ -130,21 +131,21 @@
             tbName.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
             tbName.Font = new Font("Segoe UI", 9F);
             tbName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            tbName.Location = new Point(172, 52);
+            tbName.Location = new Point(124, 142);
             tbName.Margin = new Padding(4, 5, 4, 5);
             tbName.Name = "tbName";
             tbName.PasswordChar = '\0';
             tbName.PlaceholderText = "";
             tbName.SelectedText = "";
-            tbName.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            tbName.Size = new Size(273, 36);
+            tbName.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            tbName.Size = new Size(273, 53);
             tbName.TabIndex = 49;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(60, 208);
+            label2.Location = new Point(124, 349);
             label2.Name = "label2";
             label2.Size = new Size(94, 28);
             label2.TabIndex = 48;
@@ -154,7 +155,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(26, 135);
+            label1.Location = new Point(124, 229);
             label1.Name = "label1";
             label1.Size = new Size(128, 28);
             label1.TabIndex = 47;
@@ -164,18 +165,30 @@
             // 
             lblName1.AutoSize = true;
             lblName1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblName1.Location = new Point(40, 60);
+            lblName1.Location = new Point(124, 109);
             lblName1.Name = "lblName1";
             lblName1.Size = new Size(114, 28);
             lblName1.TabIndex = 46;
             lblName1.Text = "Nombre:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Agency FB", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.MidnightBlue;
+            label3.Location = new Point(80, 29);
+            label3.Name = "label3";
+            label3.Size = new Size(369, 59);
+            label3.TabIndex = 53;
+            label3.Text = "Registro de Maestros";
             // 
             // AgregarMaestro
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(489, 361);
+            ClientSize = new Size(513, 531);
+            Controls.Add(label3);
             Controls.Add(btnSave);
             Controls.Add(tbGrade);
             Controls.Add(tbLastName);
@@ -199,5 +212,6 @@
         private Label label2;
         private Label label1;
         private Label lblName1;
+        private Label label3;
     }
 }

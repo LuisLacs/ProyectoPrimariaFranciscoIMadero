@@ -84,12 +84,12 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges54 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges55 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges56 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges59 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges60 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges61 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges62 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges57 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges58 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
             pnlAddMaestro = new Guna.UI2.WinForms.Guna2Panel();
             lblAddTeacher = new Label();
@@ -146,9 +146,9 @@
             label2 = new Label();
             guna2Button10 = new Guna.UI2.WinForms.Guna2Button();
             panel5 = new Panel();
+            btnClearSearch = new Guna.UI2.WinForms.Guna2Button();
             btnSearch = new Guna.UI2.WinForms.Guna2Button();
             tbSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            btnClearSearch = new Guna.UI2.WinForms.Guna2Button();
             panel1.SuspendLayout();
             pnlAddMaestro.SuspendLayout();
             pnlMaestro6.SuspendLayout();
@@ -163,6 +163,7 @@
             // 
             // panel1
             // 
+            panel1.AutoScroll = true;
             panel1.BackColor = SystemColors.Control;
             panel1.Controls.Add(pnlAddMaestro);
             panel1.Controls.Add(pnlMaestro6);
@@ -203,6 +204,7 @@
             lblAddTeacher.Size = new Size(241, 23);
             lblAddTeacher.TabIndex = 35;
             lblAddTeacher.Text = "Agregar nuevo maestro";
+            lblAddTeacher.Click += lblAddTeacher_Click;
             // 
             // btnAddMaestro
             // 
@@ -1004,6 +1006,28 @@
             panel5.Size = new Size(1202, 60);
             panel5.TabIndex = 23;
             // 
+            // btnClearSearch
+            // 
+            btnClearSearch.BorderColor = Color.SteelBlue;
+            btnClearSearch.BorderRadius = 5;
+            btnClearSearch.BorderThickness = 1;
+            btnClearSearch.CustomizableEdges = customizableEdges57;
+            btnClearSearch.DisabledState.BorderColor = Color.DarkGray;
+            btnClearSearch.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnClearSearch.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnClearSearch.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnClearSearch.FillColor = Color.LightSkyBlue;
+            btnClearSearch.Font = new Font("Segoe UI", 9F);
+            btnClearSearch.ForeColor = Color.White;
+            btnClearSearch.Image = Properties.Resources.image_removebg_preview;
+            btnClearSearch.ImageSize = new Size(50, 50);
+            btnClearSearch.Location = new Point(1127, 10);
+            btnClearSearch.Name = "btnClearSearch";
+            btnClearSearch.ShadowDecoration.CustomizableEdges = customizableEdges58;
+            btnClearSearch.Size = new Size(64, 41);
+            btnClearSearch.TabIndex = 38;
+            btnClearSearch.Click += btnClearSearch_Click;
+            // 
             // btnSearch
             // 
             btnSearch.BorderColor = Color.SteelBlue;
@@ -1017,6 +1041,7 @@
             btnSearch.FillColor = Color.LightSkyBlue;
             btnSearch.Font = new Font("Segoe UI", 9F);
             btnSearch.ForeColor = Color.White;
+            btnSearch.Image = Properties.Resources.image_removebg_preview__7_;
             btnSearch.Location = new Point(1049, 10);
             btnSearch.Name = "btnSearch";
             btnSearch.ShadowDecoration.CustomizableEdges = customizableEdges60;
@@ -1048,26 +1073,6 @@
             tbSearch.ShadowDecoration.CustomizableEdges = customizableEdges62;
             tbSearch.Size = new Size(1005, 36);
             tbSearch.TabIndex = 36;
-            // 
-            // btnClearSearch
-            // 
-            btnClearSearch.BorderColor = Color.SteelBlue;
-            btnClearSearch.BorderRadius = 5;
-            btnClearSearch.BorderThickness = 1;
-            btnClearSearch.CustomizableEdges = customizableEdges57;
-            btnClearSearch.DisabledState.BorderColor = Color.DarkGray;
-            btnClearSearch.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnClearSearch.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnClearSearch.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnClearSearch.FillColor = Color.LightSkyBlue;
-            btnClearSearch.Font = new Font("Segoe UI", 9F);
-            btnClearSearch.ForeColor = Color.White;
-            btnClearSearch.Location = new Point(1127, 10);
-            btnClearSearch.Name = "btnClearSearch";
-            btnClearSearch.ShadowDecoration.CustomizableEdges = customizableEdges58;
-            btnClearSearch.Size = new Size(64, 41);
-            btnClearSearch.TabIndex = 38;
-            btnClearSearch.Click += btnClearSearch_Click;
             // 
             // DirectorMaestros
             // 

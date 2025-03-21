@@ -24,7 +24,6 @@ namespace ProyectoEscuela
         {
             pInicio.Visible = true;
             lblNombre.Text = direClass.GetName();
-            // solo para hacer el commit
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -62,9 +61,9 @@ namespace ProyectoEscuela
             pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorEvaluaciones newForm = new DirectorEvaluaciones();
-            newForm.TopLevel = false; // This is important to embed the form
-            newForm.FormBorderStyle = FormBorderStyle.None; // Optional: Remove borders
-            newForm.Dock = DockStyle.Fill; // Optional: Fill the panel
+            newForm.TopLevel = false;
+            newForm.FormBorderStyle = FormBorderStyle.None;
+            newForm.Dock = DockStyle.Fill;
             panel2.Controls.Add(newForm);
             newForm.Show();
         }
@@ -73,9 +72,9 @@ namespace ProyectoEscuela
             pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorGrupos newForm = new DirectorGrupos();
-            newForm.TopLevel = false; // This is important to embed the form
-            newForm.FormBorderStyle = FormBorderStyle.None; // Optional: Remove borders
-            newForm.Dock = DockStyle.Fill; // Optional: Fill the panel
+            newForm.TopLevel = false; 
+            newForm.FormBorderStyle = FormBorderStyle.None; 
+            newForm.Dock = DockStyle.Fill; 
             panel2.Controls.Add(newForm);
             newForm.Show();
         }
@@ -84,9 +83,9 @@ namespace ProyectoEscuela
             pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorMaestros newForm = new DirectorMaestros();
-            newForm.TopLevel = false; // This is important to embed the form
-            newForm.FormBorderStyle = FormBorderStyle.None; // Optional: Remove borders
-            newForm.Dock = DockStyle.Fill; // Optional: Fill the panel
+            newForm.TopLevel = false; 
+            newForm.FormBorderStyle = FormBorderStyle.None; 
+            newForm.Dock = DockStyle.Fill;
             panel2.Controls.Add(newForm);
             newForm.Show();
         }

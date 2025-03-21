@@ -26,14 +26,14 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand("SELECT Username FROM primariafim.director;", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand("SELECT Username FROM primariafim.director;", conMySQL)) // Query para obtener el user de director
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            user = reader[0].ToString();
+                            user = reader[0].ToString(); // Almacenar el resultado del query en la variable
                         }
                         reader.Close();
                     }
@@ -55,20 +55,21 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand("SELECT Username, Pass from primariafim.director;", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand("SELECT Username, Pass from primariafim.director;", conMySQL)) // Query para obtener el user y password del director
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            direUser = reader[0].ToString();
-                            direPass = reader[1].ToString();
+                            direUser = reader[0].ToString(); // Almacenar el nombre de usuario
+                            direPass = reader[1].ToString(); // Almacenar la contraseña
                         }
                         reader.Close();
                     }
                 }
 
+                // Verificar que los datos ingresados sean iguales a los datos en la base de datos
                 if(user == direUser && pass == direPass)
                 {
                     bOk = true;
@@ -88,16 +89,16 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand("SELECT Nombre, Apellidos FROM primariafim.director;", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand("SELECT Nombre, Apellidos FROM primariafim.director;", conMySQL)) // Query para obtener el nombre completo del director
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            string nombre = reader[0].ToString();
-                            string apellido = reader[1].ToString();
-                            user = nombre + " " + apellido;
+                            string nombre = reader[0].ToString(); // Almacena el nombre
+                            string apellido = reader[1].ToString(); // Almacena el apellido
+                            user = nombre + " " + apellido; // Concatena en el mismo string
                         }
                         reader.Close();
                     }
@@ -282,7 +283,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro FROM maestro WHERE Nombre = '{name}';", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro FROM maestro WHERE Nombre = '{name}';", conMySQL)) // Query para obtener el id de maestro de acuerdo a su nombre
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
@@ -310,7 +311,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro from maestro WHERE Apellidos = '{name}';", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro from maestro WHERE Apellidos = '{name}';", conMySQL)) // Query para obtener el id de maestro de acuerdo a su apellido
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())

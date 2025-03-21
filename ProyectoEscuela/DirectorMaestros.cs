@@ -25,7 +25,7 @@ namespace ProyectoEscuela
         public DirectorMaestros()
         {
             InitializeComponent();
-            //
+            
         }
 
         private void DirectorMaestros_Load(object sender, EventArgs e)
@@ -286,6 +286,10 @@ namespace ProyectoEscuela
         {
             AddTeacher();
         }
+        private void lblAddTeacher_Click(object sender, EventArgs e)
+        {
+            AddTeacher();
+        }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -326,5 +330,7 @@ namespace ProyectoEscuela
             tbSearch.Text = string.Empty;
             LoadOptions();
         }
+
+        
     }
 }
