@@ -1,10 +1,16 @@
-﻿using Guna.UI2.WinForms;
+﻿using DevExpress.CodeParser;
+using DevExpress.XtraEditors;
+using DevExpress.XtraTreeList.Painter;
+using Google.Protobuf.WellKnownTypes;
+using Guna.UI2.WinForms;
+using ReglasDeNegocio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
@@ -14,132 +20,326 @@ namespace ProyectoEscuela
 {
     public partial class DirectorMaestros : Form
     {
+        MySQLDirector direClass = new MySQLDirector();
         public DirectorMaestros()
         {
             InitializeComponent();
         }
-        int y = 196, conteo = 1;
-        //int panel[];
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void DirectorMaestros_Load(object sender, EventArgs e)
         {
-            int numeroMaestros = 6;
-            Guna2Panel panelMaestro = new Guna2Panel();
-            Guna2Button iconoMaestro = new Guna2Button();
-            Label labelId = new Label();
-            Label labelNombre = new Label();
-            Label labelGrupo = new Label();
-            Guna2Button botonModificar = new Guna2Button();
-            Guna2Button botonEliminar = new Guna2Button();
+            LoadOptions();
+        }
 
+        public void LoadOptions()
+        {
+            DataTable dt = new DataTable();
+            pnlAddMaestro.Visible = true;
 
-            for (int i = 1; i < numeroMaestros;i++)
+            direClass.GetTeachers(ref dt);
+            int i = 0;
+            foreach (DataRow row in dt.Rows)
             {
-                
-                panelMaestro.Height = 70;
-                panelMaestro.Width = 813;
-                panelMaestro.Location = new Point(14, y);
-                y += 66;
-                panelMaestro.Name = "pMaestro" + i.ToString();
-                panelMaestro.BackColor = Color.White;
-
-                
-                iconoMaestro.Height = 50;
-                iconoMaestro.Width = 50;
-                iconoMaestro.Location = new Point(12, 8);
-                iconoMaestro.Name = "iconMaestro" + i.ToString();
-                iconoMaestro.FillColor = Color.LightGreen;
-                iconoMaestro.BorderRadius = 5;
-                iconoMaestro.BorderColor = Color.SteelBlue;
-                iconoMaestro.BorderThickness = 1;
-
-
-
-                labelId.Location = new Point(83, 24);
-                labelId.Height = 19;
-                labelId.Width = 19;
-                labelId.Name = "lblId" + i;
-                labelId.Text = conteo.ToString();
-                labelId.Font = new Font("Century Gothic", 12, FontStyle.Bold);
-
-                
-                labelNombre.Location = new Point(123, 24);
-                labelNombre.Name = "lblName" + i;
-                labelNombre.Text = "Nombre " + i;
-                labelNombre.Font = new Font("Century Gothic", 12, FontStyle.Bold);
-
-                
-                labelGrupo.Location = new Point(316, 24);
-                labelGrupo.Name = "lblGrupo" + i;
-                labelGrupo.Text = "Grupo " + i;
-                labelGrupo.Font = new Font("Century Gothic", 12, FontStyle.Bold);
-
-               
-                botonModificar.Height = 36;
-                botonModificar.Width = 123;
-                botonModificar.Location = new Point(460, 18);
-                botonModificar.Text = "Modificar";
-                botonModificar.Name = "ModificarMaestro" + i.ToString();
-                botonModificar.FillColor = Color.LightGreen;
-                botonModificar.BorderRadius = 5;
-                botonModificar.BorderColor = Color.LawnGreen;
-                botonModificar.BorderThickness = 1;
-
-                
-                botonEliminar.Height = 36;
-                botonEliminar.Width = 123;
-                botonEliminar.Location = new Point(617, 18);
-                botonEliminar.Text = "Eliminar";
-                botonEliminar.Name = "ModificarMaestro" + i.ToString();
-                botonEliminar.FillColor = Color.IndianRed;
-                botonEliminar.BorderRadius = 5;
-                botonEliminar.BorderColor = Color.Red;
-                botonEliminar.BorderThickness = 1;
-                i++;
-
-                panel1.Controls.Add(panelMaestro);
-                panelMaestro.Controls.Add(iconoMaestro);
-                panelMaestro.Controls.Add(labelId);
-                panelMaestro.Controls.Add(labelNombre);
-                panelMaestro.Controls.Add(labelGrupo);
-                panelMaestro.Controls.Add(botonModificar);
-                panelMaestro.Controls.Add(botonEliminar);
+                switch (i)
+                {
+                    case 0:
+                        lblId1.Text = row[0].ToString();
+                        lblName1.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group = CheckGroup(row[3].ToString());
+                        lblGroup1.Text = group;
+                        i++;
+                        break;
+                    case 1:
+                        pnlMaestro2.Visible = true;
+                        lblId2.Text = row[0].ToString();
+                        lblName2.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group1 = CheckGroup(row[3].ToString());
+                        lblGroup2.Text = group1;
+                        pnlAddMaestro.Location = new Point(14, 384);
+                        i++;
+                        break;
+                    case 2:
+                        pnlMaestro3.Visible = true;
+                        lblId3.Text = row[0].ToString();
+                        lblName3.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group2 = CheckGroup(row[3].ToString());
+                        lblGroup3.Text = group2;
+                        pnlAddMaestro.Location = new Point(14, 460);
+                        i++;
+                        break;
+                    case 3:
+                        pnlMaestro4.Visible = true;
+                        lblId4.Text = row[0].ToString();
+                        lblName4.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group3 = CheckGroup(row[3].ToString());
+                        lblGroup4.Text = group3;
+                        pnlAddMaestro.Location = new Point(14, 536);
+                        i++;
+                        break;
+                    case 4:
+                        pnlMaestro5.Visible = true;
+                        lblId5.Text = row[0].ToString();
+                        lblName5.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group4 = CheckGroup(row[3].ToString());
+                        lblGroup5.Text = group4;
+                        pnlAddMaestro.Location = new Point(14, 611);
+                        i++;
+                        break;
+                    case 5:
+                        pnlMaestro6.Visible = true;
+                        lblId6.Text = row[0].ToString();
+                        lblName6.Text = row[1].ToString() + " " + row[2].ToString();
+                        string group5 = CheckGroup(row[3].ToString());
+                        lblGroup6.Text = group5;
+                        pnlAddMaestro.Location = new Point(14, 686);
+                        i++;
+                        break;
+                }
             }
-            Guna2Panel panelAgregarMaestro = new Guna2Panel();
-            panelAgregarMaestro.Height = 70;
-            panelAgregarMaestro.Width = 813;
-            panelAgregarMaestro.Location = new Point(14, y);
-            y += 66;
-            panelAgregarMaestro.Name = "pAgregarMaestro";
-            panelAgregarMaestro.BackColor = Color.White;
-
-            Label lblAdd = new Label();
-            lblAdd.Location = new Point(83, 24);
-            lblAdd.Name = "lblAddMaestro";
-            lblAdd.Text = "Agregar Nuevo Maestro";
-            lblAdd.Font = new Font("Century Gothic", 12);
-
-
-            
-            panel1.Controls.Add(panelAgregarMaestro);
-            panelAgregarMaestro.Controls.Add(lblAdd);
         }
 
-        private void guna2Button4_Click(object sender, EventArgs e)
+        public void RefreshOptions()
         {
-            
-
-            
+            pnlMaestro2.Visible = false;
+            pnlMaestro3.Visible = false;
+            pnlMaestro4.Visible = false;
+            pnlMaestro5.Visible = false;
+            pnlMaestro6.Visible = false;
+            lblId1.Text = "id";
+            lblId2.Text = "id";
+            lblId3.Text = "id";
+            lblId4.Text = "id";
+            lblId5.Text = "id";
+            lblId6.Text = "id";
+            lblName1.Text = "nombre";
+            lblName2.Text = "nombre";
+            lblName3.Text = "nombre";
+            lblName4.Text = "nombre";
+            lblName5.Text = "nombre";
+            lblName6.Text = "nombre";
+            lblGroup1.Text = "grupo";
+            lblGroup2.Text = "grupo";
+            lblGroup3.Text = "grupo";
+            lblGroup4.Text = "grupo";
+            lblGroup5.Text = "grupo";
+            lblGroup6.Text = "grupo";
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private string CheckGroup(string num)
         {
+            switch (num)
+            {
+                case "1":
+                    num = "Primero";
+                    break;
+                case "2":
+                    num = "Segundo";
+                    break;
+                case "3":
+                    num = "Tercero";
+                    break;
+                case "4":
+                    num = "Cuarto";
+                    break;
+                case "5":
+                    num = "Quinto";
+                    break;
+                case "6":
+                    num = "Sexto";
+                    break;
+                default:
+                    break;
+            }
+            return num;
+        }
 
+        private void btnModify1_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId1.Text);
+            CallModify(id);
+        }
+
+        private void CallModify(int id)
+        {
+            string name = string.Empty, lname = string.Empty, grade = string.Empty;
+            DataTable dt = new DataTable();
+            direClass.GetTeachers(ref dt, id);
+            foreach (DataRow row in dt.Rows)
+            {
+                name = row[1].ToString();
+                lname = row[2].ToString();
+                grade = row[3].ToString();
+            }
+            ModificarMaestro modify = new ModificarMaestro(id, name, lname, grade);
+            modify.ShowDialog();
+        }
+
+        private void btnModify2_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId2.Text);
+            CallModify(id);
+        }
+
+        private void btnModify3_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId3.Text);
+            CallModify(id);
+        }
+
+        private void btnModify4_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId4.Text);
+            CallModify(id);
+        }
+
+        private void btnModify5_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId5.Text);
+            CallModify(id);
+        }
+
+        private void btnModify6_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt16(lblId6.Text);
+            CallModify(id);
+        }
+
+        private void CallDelete(int id)
+        {
+            string name = string.Empty, lname = string.Empty;
+            DataTable dt = new DataTable();
+            direClass.GetTeachers(ref dt, id);
+            foreach (DataRow row in dt.Rows)
+            {
+                name = row[1].ToString();
+                lname = row[2].ToString();
+            }
+
+            if (direClass.DeleteTeacher(id))
+            {
+                MessageBox.Show("Se eliminó " + name + " " + lname + " de manera exitosa");
+            }
+            else
+            {
+                MessageBox.Show("Ocurrió un error: " + direClass.sError);
+            }
+        }
+
+        private void btnDelete1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName1.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId1.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void btnDelete2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName2.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId2.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void btnDelete3_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName3.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId3.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void btnDelete4_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName4.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId4.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void btnDelete5_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName5.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId5.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void btnDelete6_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show($"¿Esta seguro que desea eliminar a {lblName6.Text}?", "Advertencia", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                int id = Convert.ToInt16(lblId6.Text);
+                CallDelete(id);
+            }
+        }
+
+        private void AddTeacher()
+        {
+            int id = direClass.LastID() + 1;
+            AgregarMaestro agregar = new AgregarMaestro(id);
+            agregar.Show();
+        }
+
+        private void pnlAddMaestro_Click(object sender, EventArgs e)
+        {
+            AddTeacher();
+        }
+
+        private void btnAddMaestro_Click(object sender, EventArgs e)
+        {
+            AddTeacher();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (tbSearch.Text != string.Empty)
+            {
+                int id = direClass.GetIDName(tbSearch.Text);
+                if (id == 0)
+                {
+                    id = direClass.GetIDLastName(tbSearch.Text);
+                    if (id == 0)
+                    {
+                        MessageBox.Show("No se ha podido encontrar una coincidencia", "Error", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+
+                DataTable dt = new DataTable();
+                direClass.GetTeachers(ref dt, id);
+                pnlMaestro6.Visible = false;
+                pnlMaestro5.Visible = false;
+                pnlMaestro4.Visible = false;
+                pnlMaestro3.Visible = false;
+                pnlMaestro2.Visible = false;
+                pnlAddMaestro.Visible = false;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    lblId1.Text = row[0].ToString();
+                    lblName1.Text = row[1].ToString() + " " + row[2].ToString();
+                    string group = CheckGroup(row[3].ToString());
+                    lblGroup1.Text = group;
+                }
+            }
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            tbSearch.Text = string.Empty;
+            LoadOptions();
         }
     }
 }

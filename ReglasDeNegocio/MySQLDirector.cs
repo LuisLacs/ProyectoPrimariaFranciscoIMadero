@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,7 @@ namespace ReglasDeNegocio
         // Estos valores son temporales mientras se trabaja en el desarrollo
         // Serán modificados, profe no se enoje plis
         private string sServer = "LAPTOP-P73RDL1S";
-        private string sUser = "escuela";
+        private string sUser = "Deisy";
         private string sPass = "12345";
 
         public string GetUser()
@@ -33,8 +35,10 @@ namespace ReglasDeNegocio
                         {
                             user = reader[0].ToString();
                         }
+                        reader.Close();
                     }
                 }
+                conMySQL.Close();
             } catch(Exception ex)
             {
                 sError = ex.Message;
@@ -61,6 +65,7 @@ namespace ReglasDeNegocio
                             direUser = reader[0].ToString();
                             direPass = reader[1].ToString();
                         }
+                        reader.Close();
                     }
                 }
 
@@ -68,6 +73,7 @@ namespace ReglasDeNegocio
                 {
                     bOk = true;
                 }
+                conMySQL.Close();
             } catch(Exception ex)
             {
                 sError = ex.Message;
@@ -93,14 +99,235 @@ namespace ReglasDeNegocio
                             string apellido = reader[1].ToString();
                             user = nombre + " " + apellido;
                         }
+                        reader.Close();
                     }
                 }
+                conMySQL.Close();
             }
             catch (Exception ex)
             {
                 sError = ex.Message;
             }
             return user;
+        }
+
+        public void GetTeachers(ref DataTable table)
+        {
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
+                {
+                    string sQry = $"SELECT * FROM maestro;";
+
+                    conMySQL.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(table);
+                    }
+
+                    conMySQL.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+        }
+
+        public void GetTeachers(ref DataTable table, int i)
+        {
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
+                {
+                    string sQry = $"SELECT * FROM maestro WHERE idMaestro = {i};";
+
+                    conMySQL.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(table);
+                    }
+
+                    conMySQL.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+        }
+
+        public bool ModifyTeacher(int id, string name, string lname, int grade)
+        {
+            bool bOk = false;
+            try
+            {
+                string sQry = $"UPDATE maestro SET Nombre = '{name}', Apellidos = '{lname}', Grupo = {grade} WHERE idMaestro = {id};";
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+
+                if (conMySQL.State == ConnectionState.Closed)
+                {
+                    conMySQL.Open();
+                }
+
+                MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                cmd.ExecuteNonQuery();
+                conMySQL.Close();
+                bOk = true;
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return bOk;
+        }
+
+        public bool AddTeacher(int id, string name, string lname, int grade)
+        {
+            bool bOk = false;
+            try
+            {
+                string sQry = $"INSERT INTO maestro VALUES ({id}, '{name}', '{lname}', {grade});";
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+
+                if (conMySQL.State == ConnectionState.Closed)
+                {
+                    conMySQL.Open();
+                }
+
+                MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                cmd.ExecuteNonQuery();
+                conMySQL.Close();
+                bOk = true;
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return bOk;
+        }
+
+        public bool DeleteTeacher(int id)
+        {
+            bool bOk = false;
+            try
+            {
+                string sQry = $"DELETE FROM maestro WHERE idMaestro = {id};";
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+
+                if (conMySQL.State == ConnectionState.Closed)
+                {
+                    conMySQL.Open();
+                }
+
+                MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                cmd.ExecuteNonQuery();
+                conMySQL.Close();
+                bOk = true;
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return bOk;
+        }
+
+        public int LastID()
+        {
+            int id = 0;
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+                using (MySqlCommand cmd = new MySqlCommand("SELECT MAX(idMaestro) FROM maestro;", conMySQL)) // Query para obtener los nombres de las BDs
+                {
+                    conMySQL.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = Convert.ToInt16(reader[0]);
+                        }
+                        reader.Close();
+                    }
+                }
+                conMySQL.Close();
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return id;
+        }
+
+        public int GetIDName(string name)
+        {
+            int id = 0;
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro FROM maestro WHERE Nombre = '{name}';", conMySQL)) // Query para obtener los nombres de las BDs
+                {
+                    conMySQL.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = Convert.ToInt16(reader[0]);
+                        }
+                        reader.Close();
+                    }
+                }
+                conMySQL.Close();
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return id;
+        }
+
+        public int GetIDLastName(string name)
+        {
+            int id = 0;
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro from maestro WHERE Apellidos = '{name}';", conMySQL)) // Query para obtener los nombres de las BDs
+                {
+                    conMySQL.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = Convert.ToInt16(reader[0]);
+                        }
+                        reader.Close();
+                    }
+                }
+                conMySQL.Close();
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return id;
         }
     }
 }
