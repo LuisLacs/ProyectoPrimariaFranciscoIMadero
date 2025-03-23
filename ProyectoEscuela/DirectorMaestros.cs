@@ -140,7 +140,7 @@ namespace ProyectoEscuela
         {
             string name = string.Empty, lname = string.Empty, grade = string.Empty;
             DataTable dt = new DataTable();
-            direClass.GetTeachers(ref dt, id);
+            direClass.GetTeacher(ref dt, id);
             foreach (DataRow row in dt.Rows)
             {
                 name = row[1].ToString();
@@ -189,7 +189,7 @@ namespace ProyectoEscuela
         {
             string name = string.Empty, lname = string.Empty;
             DataTable dt = new DataTable();
-            direClass.GetTeachers(ref dt, id);
+            direClass.GetTeacher(ref dt, id);
             foreach (DataRow row in dt.Rows)
             {
                 name = row[1].ToString();
@@ -307,7 +307,7 @@ namespace ProyectoEscuela
                 }
 
                 DataTable dt = new DataTable();
-                direClass.GetTeachers(ref dt, id);
+                direClass.GetTeacher(ref dt, id);
                 pnlMaestro6.Visible = false;
                 pnlMaestro5.Visible = false;
                 pnlMaestro4.Visible = false;

@@ -27,12 +27,12 @@ namespace ProyectoEscuela
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (tbName.Text != string.Empty && tbLastName.Text != string.Empty && tbGrade.Text != string.Empty)
+            if (tbName.Text != string.Empty && tbLastName.Text != string.Empty && tbGrade.Text != string.Empty && tbUsername.Text != string.Empty && tbPassword.Text != string.Empty)
             {
                 int grade = Convert.ToInt16(tbGrade.Text);
                 if (grade <= 6)
                 {
-                    if (direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text)))
+                    if (direClass.ModifyTeacher(iId, tbName.Text, tbLastName.Text, Convert.ToInt16(tbGrade.Text), tbUsername.Text, tbPassword.Text))
                     {
                         MessageBox.Show("Información de maestro modificada exitosamente");
                         this.Close();

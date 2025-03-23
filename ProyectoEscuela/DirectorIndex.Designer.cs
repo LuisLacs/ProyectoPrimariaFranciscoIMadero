@@ -66,7 +66,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel4 = new Panel();
-            guna2Button12 = new Guna.UI2.WinForms.Guna2Button();
+            btnDirector = new Guna.UI2.WinForms.Guna2Button();
             btnSalir = new Guna.UI2.WinForms.Guna2Button();
             lblNombre = new Label();
             label5 = new Label();
@@ -253,7 +253,7 @@
             // panel4
             // 
             panel4.BackColor = Color.White;
-            panel4.Controls.Add(guna2Button12);
+            panel4.Controls.Add(btnDirector);
             panel4.Controls.Add(btnSalir);
             panel4.Controls.Add(lblNombre);
             panel4.Controls.Add(label5);
@@ -265,34 +265,35 @@
             panel4.Size = new Size(1210, 122);
             panel4.TabIndex = 1;
             // 
-            // guna2Button12
+            // btnDirector
             // 
-            guna2Button12.AutoRoundedCorners = true;
-            guna2Button12.BackColor = Color.Transparent;
-            guna2Button12.BorderColor = Color.SteelBlue;
-            guna2Button12.BorderRadius = 27;
-            guna2Button12.BorderThickness = 1;
-            guna2Button12.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
-            guna2Button12.Checked = true;
-            guna2Button12.CheckedState.BorderColor = SystemColors.Control;
-            guna2Button12.CheckedState.FillColor = SystemColors.Control;
-            guna2Button12.CheckedState.Image = Properties.Resources.image_removebg_preview__9_;
-            guna2Button12.CustomizableEdges = customizableEdges25;
-            guna2Button12.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button12.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button12.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button12.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button12.FillColor = Color.SteelBlue;
-            guna2Button12.Font = new Font("Segoe UI", 9F);
-            guna2Button12.ForeColor = Color.White;
-            guna2Button12.Image = Properties.Resources.inicio__1_;
-            guna2Button12.Location = new Point(1051, 34);
-            guna2Button12.Margin = new Padding(4, 5, 4, 5);
-            guna2Button12.Name = "guna2Button12";
-            guna2Button12.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            guna2Button12.Size = new Size(57, 57);
-            guna2Button12.TabIndex = 7;
-            guna2Button12.UseTransparentBackground = true;
+            btnDirector.AutoRoundedCorners = true;
+            btnDirector.BackColor = Color.Transparent;
+            btnDirector.BorderColor = Color.SteelBlue;
+            btnDirector.BorderRadius = 27;
+            btnDirector.BorderThickness = 1;
+            btnDirector.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnDirector.Checked = true;
+            btnDirector.CheckedState.BorderColor = SystemColors.Control;
+            btnDirector.CheckedState.FillColor = SystemColors.Control;
+            btnDirector.CheckedState.Image = Properties.Resources.image_removebg_preview__9_;
+            btnDirector.CustomizableEdges = customizableEdges25;
+            btnDirector.DisabledState.BorderColor = Color.DarkGray;
+            btnDirector.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDirector.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDirector.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDirector.FillColor = Color.SteelBlue;
+            btnDirector.Font = new Font("Segoe UI", 9F);
+            btnDirector.ForeColor = Color.White;
+            btnDirector.Image = Properties.Resources.inicio__1_;
+            btnDirector.Location = new Point(1051, 34);
+            btnDirector.Margin = new Padding(4, 5, 4, 5);
+            btnDirector.Name = "btnDirector";
+            btnDirector.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            btnDirector.Size = new Size(57, 57);
+            btnDirector.TabIndex = 7;
+            btnDirector.UseTransparentBackground = true;
+            btnDirector.Click += btnDirector_Click;
             // 
             // btnSalir
             // 
@@ -613,7 +614,7 @@
         private Panel panel1;
         private Panel panel2;
         private Panel panel4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button12;
+        private Guna.UI2.WinForms.Guna2Button btnDirector;
         private Guna.UI2.WinForms.Guna2Button btnSalir;
         private Label lblNombre;
         private Label label5;

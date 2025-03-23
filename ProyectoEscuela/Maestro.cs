@@ -7,41 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ReglasDeNegocio;
 
 namespace ProyectoEscuela
 {
     public partial class Maestro : Form
     {
-        public Maestro()
+        MySQLMaestro maestroClass = new MySQLMaestro();
+        int iID;
+
+        public Maestro(int id)
         {
             InitializeComponent();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            iID = id;
         }
 
         private void guna2Button11_Click(object sender, EventArgs e)
         {
             Login login = new Login();
-            login.ShowDialog();
-            this.Close();
+            DialogResult result = MessageBox.Show("¿Seguro que desea salir?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.None);
+            if (result == DialogResult.Yes)
+            {
+                this.Hide();
+                login.ShowDialog();
+            }
+        }
+
+        private void Maestro_Load(object sender, EventArgs e)
+        {
+            lblNombre.Text = maestroClass.GetName(iID);
         }
     }
 }

@@ -72,9 +72,9 @@ namespace ProyectoEscuela
             pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorGrupos newForm = new DirectorGrupos();
-            newForm.TopLevel = false; 
-            newForm.FormBorderStyle = FormBorderStyle.None; 
-            newForm.Dock = DockStyle.Fill; 
+            newForm.TopLevel = false;
+            newForm.FormBorderStyle = FormBorderStyle.None;
+            newForm.Dock = DockStyle.Fill;
             panel2.Controls.Add(newForm);
             newForm.Show();
         }
@@ -83,8 +83,8 @@ namespace ProyectoEscuela
             pInicio.Visible = false;
             panel2.Controls.Clear();
             DirectorMaestros newForm = new DirectorMaestros();
-            newForm.TopLevel = false; 
-            newForm.FormBorderStyle = FormBorderStyle.None; 
+            newForm.TopLevel = false;
+            newForm.FormBorderStyle = FormBorderStyle.None;
             newForm.Dock = DockStyle.Fill;
             panel2.Controls.Add(newForm);
             newForm.Show();
@@ -107,6 +107,14 @@ namespace ProyectoEscuela
             abrirMaestros();
         }
 
-        
+        private void btnDirector_Click(object sender, EventArgs e)
+        {
+            ModificarDirector modify = new ModificarDirector();
+            var check = modify.ShowDialog();
+            if (check == DialogResult.OK || check == DialogResult.Cancel)
+            {
+                lblNombre.Text = direClass.GetName();
+            }
+        }
     }
 }

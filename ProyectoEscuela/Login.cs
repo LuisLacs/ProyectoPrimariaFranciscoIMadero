@@ -28,14 +28,14 @@ namespace ProyectoEscuela
                 {
                     MainClass mainClass = new MainClass();
                     MySQLDirector direClass = new MySQLDirector();
+                    MySQLMaestro maestroClass = new MySQLMaestro();
                     if (mainClass.BDIniciarSesion())
                     {
                         if (tbUser.Text == direClass.GetUser())
                         {
-                            if (direClass.DireLogin(tbUser.Text, tbPass.Text))
+                            if (direClass.PrincipalLogin(tbUser.Text, tbPass.Text))
                             {
                                 DirectorIndex director = new DirectorIndex();
-                                //Aqui va la conexion
                                 director.Show();
                                 this.Hide();
                             }
@@ -46,9 +46,34 @@ namespace ProyectoEscuela
                         }
                         else
                         {
-                            Maestro maestro = new Maestro();
-                            maestro.Show();
-                            this.Hide();
+                            DataTable dt = new DataTable();
+                            bool found = false;
+                            if(maestroClass.TeacherLogin(ref dt, tbUser.Text, tbPass.Text))
+                            {
+                                foreach(DataRow row in dt.Rows)
+                                {
+                                    if (row[0].ToString() == tbUser.Text && row[1].ToString() == tbPass.Text)
+                                    {
+                                        int id = maestroClass.GetID(row[0].ToString(), row[1].ToString());
+                                        Maestro maestro = new Maestro(id);
+                                        maestro.Show();
+                                        this.Hide();
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                                if (found)
+                                {
+                                    return;
+                                } else
+                                {
+                                    MessageBox.Show("Usuario o contraseña incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            } else
+                            {
+                                MessageBox.Show("Ocurrió un error: " + maestroClass.sError);
+                            }
+                            
                         }
                     }
                     else

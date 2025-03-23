@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="MainClass.cs" />
     <Compile Include="MySQLDirector.cs" />
+    <Compile Include="MySQLMaestro.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
