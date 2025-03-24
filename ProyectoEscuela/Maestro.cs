@@ -37,5 +37,13 @@ namespace ProyectoEscuela
         {
             lblNombre.Text = maestroClass.GetName(iID);
         }
+
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            btnAlumnos2.Checked = false;
+            btnGrupo2.Checked = false;
+            btnCalificaciones2.Checked = false;
+            btnSisAT.Checked = false;
+        }
     }
 }

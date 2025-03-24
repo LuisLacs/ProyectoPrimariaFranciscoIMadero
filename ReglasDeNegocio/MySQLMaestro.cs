@@ -22,7 +22,7 @@ namespace ReglasDeNegocio
             bool bOk = false;
             try
             {
-                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}"; // Query para iniciar sesión de maestro
                 using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
                 {
                     string sQry = "SELECT Username, Pass FROM registro_user;";
@@ -54,7 +54,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro from registro_user WHERE Username = '{user}' AND Pass = '{pass}';", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT idMaestro from registro_user WHERE Username = '{user}' AND Pass = '{pass}';", conMySQL)) // Query para obtener el id de maestro de un login
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
@@ -82,7 +82,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT maestro.idMaestro from maestro INNER JOIN grupo WHERE maestro.Grupo = grupo.idGrupo AND grupo.idGrupo = {grade};", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT maestro.idMaestro from maestro INNER JOIN grupo WHERE maestro.Grupo = grupo.idGrupo AND grupo.idGrupo = {grade};", conMySQL)) // Query para obtener el id de un maestro de un grado
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
@@ -140,7 +140,7 @@ namespace ReglasDeNegocio
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
                 {
-                    string sQry = $"SELECT * FROM alumno;";
+                    string sQry = $"SELECT * FROM alumno;"; // Obtener  todos alumnos
 
                     conMySQL.Open();
 
@@ -167,7 +167,7 @@ namespace ReglasDeNegocio
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
                 {
-                    string sQry = $"SELECT * FROM alumno where idAlumno = {i};";
+                    string sQry = $"SELECT * FROM alumno where idAlumno = {i};"; // Obtener la información de 1 alumno
 
                     conMySQL.Open();
 
@@ -193,7 +193,7 @@ namespace ReglasDeNegocio
             try
             {
                 int teacher = GetID(grade);
-                string sQry = $"INSERT INTO alumno (Nombre, Apellidos, idMaestro, idGrupo) VALUES ('{name}', '{lname}', {teacher}, {grade});";
+                string sQry = $"INSERT INTO alumno (Nombre, Apellidos, idMaestro, idGrupo) VALUES ('{name}', '{lname}', {teacher}, {grade});"; // Agregar un alumno
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -221,7 +221,7 @@ namespace ReglasDeNegocio
             try
             {
                 int teacher = GetID(grade);
-                string sQry = $"UPDATE alumno SET Nombre = '{name}', Apellidos = '{lname}', idMaestro = {teacher}, idGrupo = {grade} WHERE idAlumno = {id};";
+                string sQry = $"UPDATE alumno SET Nombre = '{name}', Apellidos = '{lname}', idMaestro = {teacher}, idGrupo = {grade} WHERE idAlumno = {id};"; // Modificar un alumno
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -248,7 +248,7 @@ namespace ReglasDeNegocio
             bool bOk = false;
             try
             {
-                string sQry = $"DELETE FROM alumno where idAlumno = {id};";
+                string sQry = $"DELETE FROM alumno where idAlumno = {id};"; // Eliminar un alumno
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -332,7 +332,7 @@ namespace ReglasDeNegocio
             try
             {
                 int students = CountStudents(grade);
-                string sQry = $"UPDATE grupo SET CantidadAlumnos = {students};";
+                string sQry = $"UPDATE grupo SET CantidadAlumnos = {students};"; // Actualizar la cantidad de alumnos en un grupo
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -361,7 +361,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(idAlumno) as Num from alumno INNER JOIN grupo WHERE alumno.idGrupo = grupo.idGrupo AND grupo.idGrupo = {grade};", conMySQL)) 
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(idAlumno) as Num from alumno INNER JOIN grupo WHERE alumno.idGrupo = grupo.idGrupo AND grupo.idGrupo = {grade};", conMySQL)) // Contar la cantidad de alumnos en un grupo
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())

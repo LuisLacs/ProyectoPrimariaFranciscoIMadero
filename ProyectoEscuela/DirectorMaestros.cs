@@ -199,6 +199,7 @@ namespace ProyectoEscuela
             if (direClass.DeleteTeacher(id))
             {
                 MessageBox.Show("Se eliminó " + name + " " + lname + " de manera exitosa");
+                LoadOptions();
             }
             else
             {

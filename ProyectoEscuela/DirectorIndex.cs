@@ -54,7 +54,9 @@ namespace ProyectoEscuela
         private void btnInicio_Click(object sender, EventArgs e)
         {
             pInicio.Visible = true;
-
+            btnEvaluaciones1.Checked = false;
+            btnMaestros1.Checked = false;
+            btnGrupos1.Checked = false;
         }
         public void abrirEvaluaciones()
         {
@@ -115,6 +117,16 @@ namespace ProyectoEscuela
             {
                 lblNombre.Text = direClass.GetName();
             }
+        }
+
+        private void btnEvaluaciones1_Click(object sender, EventArgs e)
+        {
+            abrirEvaluaciones();
+        }
+
+        private void btnEvaluaciones2_Click(object sender, EventArgs e)
+        {
+            abrirEvaluaciones();
         }
     }
 }

@@ -484,6 +484,7 @@
             btnEvaluaciones2.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnEvaluaciones2.Size = new Size(250, 292);
             btnEvaluaciones2.TabIndex = 3;
+            btnEvaluaciones2.Click += btnEvaluaciones2_Click;
             // 
             // label2
             // 
@@ -520,6 +521,7 @@
             btnEvaluaciones1.Size = new Size(86, 83);
             btnEvaluaciones1.TabIndex = 4;
             btnEvaluaciones1.UseTransparentBackground = true;
+            btnEvaluaciones1.Click += btnEvaluaciones1_Click;
             // 
             // btnGrupos2
             // 
@@ -585,6 +587,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(4, 5, 4, 5);
             Name = "DirectorIndex";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "DirectorIndex";
             Load += DirectorIndex_Load;
             guna2CustomGradientPanel1.ResumeLayout(false);

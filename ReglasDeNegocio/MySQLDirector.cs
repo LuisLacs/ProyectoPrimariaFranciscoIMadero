@@ -198,7 +198,7 @@ namespace ReglasDeNegocio
             bool bOk = false;
             try
             {
-                string sQry = $"INSERT INTO maestro VALUES ({id}, '{name}', '{lname}', {grade}); INSERT INTO registro_user (Username, Pass, idMaestro) VALUES ('{user}', '{pass}', {id});";
+                string sQry = $"INSERT INTO maestro VALUES ({id}, '{name}', '{lname}', {grade}); INSERT INTO registro_user (Username, Pass, idMaestro) VALUES ('{user}', '{pass}', {id});"; // Query para agregar un maestro
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -225,7 +225,7 @@ namespace ReglasDeNegocio
             bool bOk = false;
             try
             {
-                string sQry = $"DELETE FROM maestro WHERE idMaestro = {id};";
+                string sQry = $"DELETE FROM registro_user WHERE idMaestro = {id}; DELETE FROM maestro WHERE idMaestro = {id};"; // Query para eliminar un maestro
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -254,7 +254,7 @@ namespace ReglasDeNegocio
             {
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
-                using (MySqlCommand cmd = new MySqlCommand("SELECT MAX(idMaestro) FROM maestro;", conMySQL)) // Query para obtener los nombres de las BDs
+                using (MySqlCommand cmd = new MySqlCommand("SELECT MAX(idMaestro) FROM maestro;", conMySQL)) // Query para obtener el último id de maestros
                 {
                     conMySQL.Open();
                     using (var reader = cmd.ExecuteReader())
@@ -331,12 +331,40 @@ namespace ReglasDeNegocio
             return id;
         }
 
+        public int CountTeachers()
+        {
+            int id = 0;
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                MySqlConnection conMySQL = new MySqlConnection(sConnection);
+                using (MySqlCommand cmd = new MySqlCommand($"SELECT COUNT(idMaestro) from maestro;", conMySQL)) // Query para obtener la cantidad de maestros que se encuentran en la bds
+                {
+                    conMySQL.Open();
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            id = Convert.ToInt16(reader[0]);
+                        }
+                        reader.Close();
+                    }
+                }
+                conMySQL.Close();
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
+            return id;
+        }
+
         public bool ModifyPrincipal(string name, string lname, string user, string pass)
         {
             bool bOk = false;
             try
             {
-                string sQry = $"UPDATE director SET Nombre = '{name}', Apellidos = '{lname}', Username = '{user}', Pass = '{pass}' WHERE idDirector = 1;";
+                string sQry = $"UPDATE director SET Nombre = '{name}', Apellidos = '{lname}', Username = '{user}', Pass = '{pass}' WHERE idDirector = 1;"; // Query para actualizar los datos del director
                 sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
                 MySqlConnection conMySQL = new MySqlConnection(sConnection);
 
@@ -356,6 +384,33 @@ namespace ReglasDeNegocio
                 sError = ex.Message;
             }
             return bOk;
+        }
+
+        public void GetClasses(ref DataTable table, int grade)
+        {
+            try
+            {
+                sConnection = $@"Server={sServer}; database=primariafim; UID={sUser}; password={sPass}";
+                using (MySqlConnection conMySQL = new MySqlConnection(sConnection))
+                {
+                    string sQry = $"SELECT * FROM maestro WHERE Grupo = {grade};";
+
+                    conMySQL.Open();
+
+                    MySqlCommand cmd = new MySqlCommand(sQry, conMySQL);
+
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(table);
+                    }
+
+                    conMySQL.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                sError = ex.Message;
+            }
         }
     }
 }
